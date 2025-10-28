@@ -1,3 +1,4 @@
-[submodule "Documentation"]
+[submodule "pei-nwdaf-microsite"]
 	path = Documentation
 	url = git@github.com:ATNoG/pei-nwdaf-microsite.git
+	branch = main
