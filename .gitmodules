@@ -2,3 +2,19 @@
 	path = Documentation
 	url = git@github.com:ATNoG/pei-nwdaf-microsite.git
 	branch = main
+[submodule "Data-Storage"]
+	path = Data-Storage
+	url = https://github.com/ATNoG/pei-nwdaf-data-storage
+	branch = main
+[submodule "Comms"]
+	path = Comms
+	url = https://github.com/ATNoG/pei-nwdaf-comms
+	branch = main
+[submodule "Data-Processor"]
+	path = Data-Processor
+	url = https://github.com/ATNoG/pei-nwdaf-data-processor
+	branch = main
+[submodule "Network-Producer"]
+	path = Network-Producer
+	url = https://github.com/ATNoG/pei-nwdaf-network-producer
+	branch = main
