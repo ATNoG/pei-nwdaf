@@ -17,7 +17,7 @@ services:
         - influxdb_data:/var/lib/influxdb2
         - influxdb_config:/etc/influxdb2
       networks:
-        - data-storage-network
+        - nwdaf-network
       restart: unless-stopped
 
     clickhouse:
@@ -34,7 +34,7 @@ services:
         - clickhouse_data:/var/lib/clickhouse
         - clickhouse_logs:/var/log/clickhouse-server
       networks:
-        - data-storage-network
+        - nwdaf-network
       restart: unless-stopped
 
     #---- Middleware
@@ -49,3 +49,15 @@ services:
 
     #---- Services
     #TODO
+
+
+volumes:
+  influxdb_data:
+  influxdb_config:
+  clickhouse_data:
+  clickhouse_logs:
+  kafka_data:
+
+networks:
+  nwdaf-network:
+    driver: bridge
