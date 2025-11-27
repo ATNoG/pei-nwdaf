@@ -68,6 +68,17 @@ services:
       build:
         context: ./Data-Storage
         dockerfile: Dockerfile
+      environment:
+        - INFLUX_URL=http://influxdb:8086
+        - INFLUX_TOKEN=${INFLUX_TOKEN:-mytoken}
+        - INFLUX_ORG=${INFLUX_ORG:-myorg}
+        - INFLUX_BUCKET=${INFLUX_BUCKET:-mybucket}
+        - CLICKHOUSE_HOST=clickhouse
+        - CLICKHOUSE_PORT=8123
+        - CLICKHOUSE_USER=${CLICKHOUSE_USER:-default}
+        - CLICKHOUSE_PASSWORD=${CLICKHOUSE_PASSWORD:-clickhouse}
+        - KAFKA_HOST=kafka
+        - KAFKA_PORT=9092
       depends_on:
         - clickhouse
         - influxdb
@@ -83,6 +94,10 @@ services:
       build:
         context: ./Ingestion-Service
         dockerfile: Dockerfile
+      environment:
+        - KAFKA_HOST=kafka
+        - KAFKA_PORT=9092
+        - KAFKA_TOPIC=${KAFKA_TOPIC:-raw-data}
       depends_on:
         - kafka
       networks:
