@@ -17,4 +17,4 @@ jobs:
         run: >-
                   curl -X POST
                   -u "${JENKINS_USER}:${JENKINS_API_TOKEN}"
-                  "http://localhost:8080/job/nwdaf/build?token=pei-nwdaf-20252026-atnog"
+                  "http://localhost:8080/job/nwdaf/build?token=${JENKINS_TRIGGER_TOKEN}"
