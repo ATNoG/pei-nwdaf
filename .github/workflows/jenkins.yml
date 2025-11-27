@@ -1,0 +1,19 @@
+name: Trigger Jenkins
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  trigger-jenkins:
+    runs-on: self-hosted
+    steps:
+      - name: Start build
+        env:
+          JENKINS_USER: admin
+          JENKINS_API_TOKEN: ${{ secrets.JENKINS_API_TOKEN }}
+          JENKINS_TRIGGER_TOKEN: ${{ secrets.JENKINS_TRIGGER_TOKEN }}
+        run: curl -X POST \
+              -u "${JENKINS_USER}:${JENKINS_API_TOKEN}" \
+              "http://localhost:8080/job/nwdaf/build?token=${JENKINS_TRIGGER_TOKEN}"
