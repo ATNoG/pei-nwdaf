@@ -64,7 +64,7 @@ services:
     data-storage:
       container_name: data-storage
       ports:
-        - "8123:8123"
+        - "8000:8000"
       build:
         context: ./Data-Storage
         dockerfile: Dockerfile
