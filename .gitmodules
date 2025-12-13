@@ -22,3 +22,15 @@
 	path = Ingestion-Service
 	url = https://github.com/ATNoG/pei-nwdaf-data-ingestion.git
 	branch = main
+[submodule "ML"]
+	path = ML
+	url = git@github.com:ATNoG/pei-nwdaf-ml.git
+	branch = main
+[submodule "Infra"]
+	path = Infra
+	url = git@github.com:ATNoG/pei-nwdaf-infra.git
+	branch = main
+[submodule "Template"]
+	path = Template
+	url = git@github.com:ATNoG/pei-nwdaf-template.git
+	branch = main
