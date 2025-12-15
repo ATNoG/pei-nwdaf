@@ -10,6 +10,10 @@
 	path = Comms
 	url = https://github.com/ATNoG/pei-nwdaf-comms
 	branch = main
+[submodule "Frontend"]
+	path = Frontend
+	url = git@github.com:ATNoG/pei-nwdaf-frontend.git
+	branch = main
 [submodule "Data-Processor"]
 	path = Data-Processor
 	url = https://github.com/ATNoG/pei-nwdaf-data-processor
