@@ -38,3 +38,11 @@
 	path = Template
 	url = git@github.com:ATNoG/pei-nwdaf-template.git
 	branch = main
+[submodule "Policy"]
+	path = Policy
+	url = git@github.com:ATNoG/pei-nwdaf-policy.git
+	branch = main
+[submodule "Decision"]
+	path = Decision
+	url = git@github.com:ATNoG/pei-nwdaf-decision.git
+	branch = main

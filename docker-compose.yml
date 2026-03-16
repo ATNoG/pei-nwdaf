@@ -1,0 +1,29 @@
+include:
+  # 1. Infrastructure — kafka, monitoring (must be up first)
+  - path: Infra/docker-compose.yml
+
+  # 2. Storage — influxdb, clickhouse, data-storage
+  - path: Data-Storage/docker-compose.yml
+
+  # 3. Policy — permit, policy-service
+  - path: Policy/docker-compose.yml
+
+  # 4. Ingestion
+  - path: Ingestion-Service/docker-compose.yml
+
+  # 5. Processor
+  - path: Data-Processor/docker-compose.yml
+
+  # 6. ML — postgres, minio, mlflow, pei-ml
+  - path: ML/docker-compose.yml
+
+  # 7. Decision
+  - path: Decision/docker-compose.yml
+
+  # 8. Frontend — nginx, frontend
+  - path: Frontend/docker-compose.yml
+
+networks:
+  nwdaf-network:
+    name: nwdaf-network
+    driver: bridge
