@@ -27,10 +27,6 @@ The result is a closed-loop system where raw network data flows through collecti
 | Rafael Direito | 
 | Rafael Teixeira | 
 
-
-> `#` stands for adviser
-
-
 ## Architecture
 ![architecture](images/architecture.png)
 
