@@ -12,7 +12,7 @@
 	branch = main
 [submodule "Frontend"]
 	path = Frontend
-	url = git@github.com:ATNoG/pei-nwdaf-frontend.git
+	url = https://github.com/ATNoG/pei-nwdaf-frontend.git
 	branch = main
 [submodule "Data-Processor"]
 	path = Data-Processor
@@ -28,21 +28,21 @@
 	branch = main
 [submodule "ML"]
 	path = ML
-	url = git@github.com:ATNoG/pei-nwdaf-ml.git
+	url = https://github.com/ATNoG/pei-nwdaf-ml.git
 	branch = main
 [submodule "Infra"]
 	path = Infra
-	url = git@github.com:ATNoG/pei-nwdaf-infra.git
+	url = https://github.com/ATNoG/pei-nwdaf-infra.git
 	branch = main
 [submodule "Template"]
 	path = Template
-	url = git@github.com:ATNoG/pei-nwdaf-template.git
+	url = https://github.com/ATNoG/pei-nwdaf-template.git
 	branch = main
 [submodule "Policy"]
 	path = Policy
-	url = git@github.com:ATNoG/pei-nwdaf-policy.git
+	url = https://github.com/ATNoG/pei-nwdaf-policy.git
 	branch = main
 [submodule "Decision"]
 	path = Decision
-	url = git@github.com:ATNoG/pei-nwdaf-decision.git
+	url = https://github.com/ATNoG/pei-nwdaf-decision.git
 	branch = main
