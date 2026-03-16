@@ -80,7 +80,7 @@ docker compose up -d
 
 ## Contributing
 
-
+See [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## License
 [License](LICENSE)
