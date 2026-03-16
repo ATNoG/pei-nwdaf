@@ -4,7 +4,7 @@
 
 This platform brings AI-driven analytics and autonomous decision-making to telecommunications networks.
 
-Network telemetry is continuously ingested, processed, and stored. Machine learning models — registered and versioned via MLflow — run inference over that data and publish results to a shared event stream. A policy layer governs data access between all components, ensuring that only authorized services can read or act on sensitive network metrics. An LLM-based decision service consumes model inferences and translates them into actionable network recommendations.
+Network telemetry is continuously ingested, processed, and stored. Machine learning models --- registered and versioned via MLflow --- run inference over that data and publish results to a shared event stream. A policy layer governs data access between all components, ensuring that only authorized services can read or act on sensitive network metrics. An LLM-based decision service consumes model inferences and translates them into actionable network recommendations.
 
 The result is a closed-loop system where raw network data flows through collection, analysis, and decision stages, with policy enforcement and observability at every step.
 
