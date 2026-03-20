@@ -79,7 +79,7 @@ docker compose up --build kafka kafka-init-topics -d
 
 **Start services**
 
-> **Note:** This will give you some errors on policy-service if you don't set a permit api key but it won't stop the application from running is POLICY_ENABLED is set to false
+> **Note:** This will give you some errors on policy-service if you don't set a permit api key but it won't stop the application from running if POLICY_ENABLED is set to false
 
 ```bash
 docker compose up --build data-storage data-ingestion processor1 processor2 mlservice decision policy-api
