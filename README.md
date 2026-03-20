@@ -8,6 +8,7 @@ Network telemetry is continuously ingested, processed, and stored. Machine learn
 
 The result is a closed-loop system where raw network data flows through collection, analysis, and decision stages, with policy enforcement and observability at every step.
 
+For a more detailed explanation of the project access our [website](https://atnog.github.io/pei-nwdaf-microsite/).
 
 ### Team
 
@@ -30,8 +31,22 @@ The result is a closed-loop system where raw network data flows through collecti
 ## Architecture
 ![architecture](images/architecture.png)
 
-## Quick Start
+### Relevant repositories
 
+| Repository | Description|
+|-----------|------------|
+| [Data Storage](https://github.com/ATNoG/pei-nwdaf-data-storage)| Stores processed network analytics data in InfluxDB and ClickHouse for querying and analysis |
+| [Data Ingestion](https://github.com/ATNoG/pei-nwdaf-data-ingestion)| Receives raw network telemetry from producers via HTTP/WebSocket and publishes to Kafka |
+| [Data Processor](https://github.com/ATNoG/pei-nwdaf-data-processor)| Consumes raw data from Kafka, aggregates into time windows, and writes to storage |
+| [Network Producer](https://github.com/ATNoG/pei-nwdaf-network-producer)| Captures network traffic (pcap/csv) and sends batches to ingestion service |
+| [Infra](https://github.com/ATNoG/pei-nwdaf-infra)| Infrastructure components: Kafka, InfluxDB, ClickHouse, and monitoring stack |
+| [Decision](https://github.com/ATNoG/pei-nwdaf-decision)| LLM-based decision engine that translates ML inferences into actionable network recommendations |
+| [Frontend](https://github.com/ATNoG/pei-nwdaf-frontend)| Web dashboard for visualization, model training, inference, and system monitoring |
+| [ML](https://github.com/ATNoG/pei-nwdaf-ml)| Machine learning service with MLflow for model versioning, training, and inference |
+| [Policy](https://github.com/ATNoG/pei-nwdaf-policy)| Policy enforcement layer controlling data access between components via Permit.io |
+| [Network Producer](https://github.com/ATNoG/pei-network-producer)| Standalone network traffic producer for testing and development |
+
+## Quick Start
 
 ### Prerequisites
 
@@ -96,19 +111,6 @@ Access `http://localhost/`.
 1. Click on **Add Producer** 
 
 2. Set url `http://producer-csv:8001/subscriptions`.
-
-## Components
-
-| Component | Description | Docs |
-|---|---|---|
-| **Infra** | Kafka, Prometheus, Grafana, Loki, Alloy | [docs/infra.md](docs/infra.md) |
-| **Storage** | InfluxDB, ClickHouse, data-storage API | [docs/storage.md](docs/storage.md) |
-| **Policy** | Permit.io PDP, policy-service | [docs/policy.md](docs/policy.md) |
-| **Ingestion** | Data ingestion service | [docs/ingestion.md](docs/ingestion.md) |
-| **Processor** | Windowed data processor (60s / 300s) | [docs/processor.md](docs/processor.md) |
-| **ML** | MLflow, MinIO, PostgreSQL, ML inference service | [docs/ml.md](docs/ml.md) |
-| **Decision** | LLM-based decision service | [docs/decision.md](docs/decision.md) |
-| **Frontend** | Nginx reverse proxy, Vite/React dashboard | [docs/frontend.md](docs/frontend.md) |
 
 ## Contributing
 

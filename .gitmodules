@@ -6,10 +6,6 @@
 	path = Data-Storage
 	url = https://github.com/ATNoG/pei-nwdaf-data-storage
 	branch = main
-[submodule "Comms"]
-	path = Comms
-	url = https://github.com/ATNoG/pei-nwdaf-comms
-	branch = main
 [submodule "Frontend"]
 	path = Frontend
 	url = https://github.com/ATNoG/pei-nwdaf-frontend.git
@@ -33,10 +29,6 @@
 [submodule "Infra"]
 	path = Infra
 	url = https://github.com/ATNoG/pei-nwdaf-infra.git
-	branch = main
-[submodule "Template"]
-	path = Template
-	url = https://github.com/ATNoG/pei-nwdaf-template.git
 	branch = main
 [submodule "Policy"]
 	path = Policy
