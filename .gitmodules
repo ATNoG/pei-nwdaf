@@ -1,7 +1,3 @@
-[submodule "Documentation"]
-	path = Documentation
-	url = https://github.com/ATNoG/pei-nwdaf-microsite.git
-	branch = main
 [submodule "Data-Storage"]
 	path = Data-Storage
 	url = https://github.com/ATNoG/pei-nwdaf-data-storage
