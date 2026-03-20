@@ -57,9 +57,45 @@ cp .env.example .env
 
 ### Running the Stack
 
+**Start kafka**
 ```bash
-docker compose up -d
+docker compose up --build kafka kafka-init-topics -d
 ```
+
+**Start services**
+
+> **Note:** This will give you some errors on policy-service if you don't set a permit api key but it won't stop the application from running is POLICY_ENABLED is set to false
+
+```bash
+docker compose up --build data-storage data-ingestion processor1 processor2 mlservice decision policy-api
+```
+
+**Start frontend**
+```bash
+docker compose up --build frontend nginx
+```
+
+**Start network producer**
+```bash
+cd Network-Producer
+PORT=8001 docker compose up --build producer-csv 
+
+# if u want to test the system with data from one of your internet interfaces
+
+CAPTURE_INTERFACE="<your_interface>" docker compose up --build producer-tshark
+```
+
+### Acessing dashboard
+
+**Running on local machine**
+
+Access `http://localhost/`.
+
+**Connect your producer**
+
+1. Click on **Add Producer** 
+
+2. Set url `http://producer-csv:8001/subscriptions`.
 
 ## Components
 

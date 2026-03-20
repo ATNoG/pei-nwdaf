@@ -16,7 +16,7 @@ env:
 		echo "Error: .env not found. Copy .env.example to .env and configure HOSTS."; \
 		exit 1; \
 	fi
-	@set -a; . ./.env; set +a; envsubst < .env > .env
+	@set -a; . ./.env; set +a; envsubst < .env > .env.tmp && mv .env.tmp .env
 	@echo ".env generated"
 
 up: env network
