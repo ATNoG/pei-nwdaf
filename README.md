@@ -55,6 +55,7 @@ For a more detailed explanation of the project access our [website](https://atno
 - CPU: 4+ cores
 - RAM: 16 GB recommended
 - Disk: 20+ GB free
+- Ollama instance ( Just needed for decisions )
 
 ### Cloning project 
 ```sh
@@ -68,6 +69,16 @@ git clone --recurse-submodules https://github.com/ATNoG/pei-nwdaf
 ```bash
 cp .env.example .env
 # edit .env as needed
+```
+
+Copy the LLM prompt and system templates for the Decision service:
+```bash
+for f in Decision/llm/*.txt.example; do cp "$f" "${f%.example}"; done
+```
+
+Copy the ClickHouse configuration templates for the Data Storage service:
+```bash
+for f in Data-Storage/confs/*.txt.example; do cp "$f" "${f%.example}"; done
 ```
 
 ### Running the Stack
