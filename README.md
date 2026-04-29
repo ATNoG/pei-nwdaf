@@ -100,12 +100,6 @@ docker compose up --build frontend nginx
 
 Access `http://localhost/`.
 
-**Connect your producer**
-
-1. Click on **Add Producer** 
-
-2. Set url `http://producer-csv:8001/subscriptions`.
-
 ## Contributing
 
 See [CONTRIBUTING.md](CONTRIBUTING.md).
