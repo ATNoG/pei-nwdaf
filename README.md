@@ -38,13 +38,12 @@ For a more detailed explanation of the project access our [website](https://atno
 | [Data Storage](https://github.com/ATNoG/pei-nwdaf-data-storage)| Stores processed network analytics data in InfluxDB and ClickHouse for querying and analysis |
 | [Data Ingestion](https://github.com/ATNoG/pei-nwdaf-data-ingestion)| Receives raw network telemetry from producers via HTTP/WebSocket and publishes to Kafka |
 | [Data Processor](https://github.com/ATNoG/pei-nwdaf-data-processor)| Consumes raw data from Kafka, aggregates into time windows, and writes to storage |
-| [Network Producer](https://github.com/ATNoG/pei-nwdaf-network-producer)| Captures network traffic (pcap/csv) and sends batches to ingestion service |
 | [Infra](https://github.com/ATNoG/pei-nwdaf-infra)| Infrastructure components: Kafka, InfluxDB, ClickHouse, and monitoring stack |
 | [Decision](https://github.com/ATNoG/pei-nwdaf-decision)| LLM-based decision engine that translates ML inferences into actionable network recommendations |
 | [Frontend](https://github.com/ATNoG/pei-nwdaf-frontend)| Web dashboard for visualization, model training, inference, and system monitoring |
 | [ML](https://github.com/ATNoG/pei-nwdaf-ml)| Machine learning service with MLflow for model versioning, training, and inference |
 | [Policy](https://github.com/ATNoG/pei-nwdaf-policy)| Policy enforcement layer controlling data access between components via Permit.io |
-| [Network Producer](https://github.com/ATNoG/pei-network-producer)| Standalone network traffic producer for testing and development |
+
 
 ## Quick Start
 
@@ -70,16 +69,10 @@ git clone --recurse-submodules https://github.com/ATNoG/pei-nwdaf
 cp .env.example .env
 # edit .env as needed
 ```
-
-Copy the LLM prompt and system templates for the Decision service:
-```bash
-for f in Decision/llm/*.txt.example; do cp "$f" "${f%.example}"; done
 ```
 
-Copy the ClickHouse configuration templates for the Data Storage service:
-```bash
-for f in Data-Storage/confs/*.txt.example; do cp "$f" "${f%.example}"; done
-```
+# Todo: add section about how to run with ledger
+# 
 
 ### Running the Stack
 
@@ -99,16 +92,6 @@ docker compose up --build data-storage data-ingestion processor1 processor2 mlse
 **Start frontend**
 ```bash
 docker compose up --build frontend nginx
-```
-
-**Start network producer**
-```bash
-cd Network-Producer
-PORT=8001 docker compose up --build producer-csv 
-
-# if u want to test the system with data from one of your internet interfaces
-
-CAPTURE_INTERFACE="<your_interface>" docker compose up --build producer-tshark
 ```
 
 ### Acessing dashboard

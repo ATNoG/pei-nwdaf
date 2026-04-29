@@ -10,10 +10,6 @@
 	path = Data-Processor
 	url = https://github.com/ATNoG/pei-nwdaf-data-processor
 	branch = main
-[submodule "Network-Producer"]
-	path = Network-Producer
-	url = https://github.com/ATNoG/pei-nwdaf-network-producer
-	branch = main
 [submodule "Ingestion-Service"]
 	path = Ingestion-Service
 	url = https://github.com/ATNoG/pei-nwdaf-data-ingestion.git
@@ -34,3 +30,6 @@
 	path = Decision
 	url = https://github.com/ATNoG/pei-nwdaf-decision.git
 	branch = main
+[submodule "packages"]
+	path = packages
+	url = https://github.com/ATNoG/pei-nwdaf-comms
