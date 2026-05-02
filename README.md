@@ -63,7 +63,7 @@ git clone --recurse-submodules https://github.com/ATNoG/pei-nwdaf
 
 ### Configuration
 
-**Note:** The `.env.example` can be used as `.env` if the project components are on the same machine.
+**Note:** The `.env.example` can be used as `.env` for single-machine deployments. All services communicate via the internal `nwdaf-network` Docker bridge network.
 
 ```bash
 cp .env.example .env
@@ -76,13 +76,25 @@ cp .env.example .env
 
 ### Running the Stack
 
+#### Quick Start (Development Mode)
+```bash
+docker compose up --build
+```
+All services expose ports for debugging. Access services directly on their configured ports.
+
+#### Production Mode
+```bash
+docker compose --profile prod up --build
+```
+Only nginx exposes ports (80/443). All services communicate privately via Docker network.
+
+#### Manual Service Control (Development)
 **Start kafka**
 ```bash
 docker compose up --build kafka kafka-init-topics -d
 ```
 
 **Start services**
-
 > **Note:** This will give you some errors on policy-service if you don't set a permit api key but it won't stop the application from running if POLICY_ENABLED is set to false
 
 ```bash
@@ -94,11 +106,16 @@ docker compose up --build data-storage data-ingestion processor1 processor2 mlse
 docker compose up --build frontend nginx
 ```
 
-### Acessing dashboard
+### Accessing Dashboard
 
-**Running on local machine**
+**Development Mode (localhost with direct access):**
+- Dashboard: `http://localhost:5173` (or via nginx: `http://localhost/`)
+- MLflow: `http://localhost:5000/` (or via nginx: `http://localhost/mlflow`)
+- Services exposed on configured ports
 
-Access `http://localhost/`.
+**Production Mode (via nginx only):**
+- All services: `http://localhost/` (nginx reverse proxy)
+- Internal services not directly accessible
 
 ## Contributing
 
