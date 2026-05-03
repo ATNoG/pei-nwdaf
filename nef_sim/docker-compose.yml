@@ -1,0 +1,13 @@
+services:
+  nef-sim:
+    build: .
+    container_name: nef-sim
+    ports:
+      - "8990:8990"
+    networks:
+      - nwdaf-network
+    restart: unless-stopped
+
+networks:
+  nwdaf-network:
+    external: true

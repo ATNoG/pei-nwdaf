@@ -2,7 +2,7 @@
 
 ## Overview
 
-This platform brings AI-driven analytics and autonomous decision-making to telecommunications networks.
+This platform brings AI-driven analytics and automatic decision creation to telecommunications networks.
 
 Network telemetry is continuously ingested, processed, and stored. Machine learning models --- registered and versioned via MLflow --- run inference over that data and publish results to a shared event stream. A policy layer governs data access between all components, ensuring that only authorized services can read or act on sensitive network metrics. An LLM-based decision service consumes model inferences and translates them into actionable network recommendations.
 
@@ -31,27 +31,13 @@ For a more detailed explanation of the project access our [website](https://atno
 ## Architecture
 ![architecture](images/architecture.png)
 
-### Relevant repositories
-
-| Repository | Description|
-|-----------|------------|
-| [Data Storage](https://github.com/ATNoG/pei-nwdaf-data-storage)| Stores processed network analytics data in InfluxDB and ClickHouse for querying and analysis |
-| [Data Ingestion](https://github.com/ATNoG/pei-nwdaf-data-ingestion)| Receives raw network telemetry from producers via HTTP/WebSocket and publishes to Kafka |
-| [Data Processor](https://github.com/ATNoG/pei-nwdaf-data-processor)| Consumes raw data from Kafka, aggregates into time windows, and writes to storage |
-| [Network Producer](https://github.com/ATNoG/pei-nwdaf-network-producer)| Captures network traffic (pcap/csv) and sends batches to ingestion service |
-| [Infra](https://github.com/ATNoG/pei-nwdaf-infra)| Infrastructure components: Kafka, InfluxDB, ClickHouse, and monitoring stack |
-| [Decision](https://github.com/ATNoG/pei-nwdaf-decision)| LLM-based decision engine that translates ML inferences into actionable network recommendations |
-| [Frontend](https://github.com/ATNoG/pei-nwdaf-frontend)| Web dashboard for visualization, model training, inference, and system monitoring |
-| [ML](https://github.com/ATNoG/pei-nwdaf-ml)| Machine learning service with MLflow for model versioning, training, and inference |
-| [Policy](https://github.com/ATNoG/pei-nwdaf-policy)| Policy enforcement layer controlling data access between components via Permit.io |
-| [Network Producer](https://github.com/ATNoG/pei-network-producer)| Standalone network traffic producer for testing and development |
-
 ## Quick Start
 
 ### Prerequisites
 
 - Docker compose
 - git
+- make
 - CPU: 4+ cores
 - RAM: 16 GB recommended
 - Disk: 20+ GB free
@@ -64,64 +50,40 @@ git clone --recurse-submodules https://github.com/ATNoG/pei-nwdaf
 
 ### Configuration
 
-**Note:** The `.env.example` can be used as `.env` if the project components are on the same machine.
+**Note:** The `.env.example` can be used as `.env` for single-machine deployments. All services communicate via the internal `nwdaf-network` Docker bridge network.
 
 ```bash
-cp .env.example .env
+make env 
 # edit .env as needed
-```
-
-Copy the LLM prompt and system templates for the Decision service:
-```bash
-for f in Decision/llm/*.txt.example; do cp "$f" "${f%.example}"; done
-```
-
-Copy the ClickHouse configuration templates for the Data Storage service:
-```bash
-for f in Data-Storage/confs/*.txt.example; do cp "$f" "${f%.example}"; done
 ```
 
 ### Running the Stack
 
-**Start kafka**
+#### Quick Start (Development Mode)
 ```bash
-docker compose up --build kafka kafka-init-topics -d
+make dev
+```
+> All services expose ports for debugging. Access services directly on their configured ports.
+
+### Quick Start (Production)
+```bash
+make prod 
+```
+> Note that in this mode we only expose ports for nginx, ingestion service , decision service and observability stack.
+
+### Quick Start (Producer)
+As for now we only support `Nef_event_exposure` on ingestion service. (without auth). If you don't have one then you can run the simulator we provide. Note that this simulator follows TS 29.591 but only sends random values.
+```bash
+make producers
 ```
 
-**Start services**
+### Accessing Dashboard
 
-> **Note:** This will give you some errors on policy-service if you don't set a permit api key but it won't stop the application from running if POLICY_ENABLED is set to false
+Go to `http://localhost/`
 
-```bash
-docker compose up --build data-storage data-ingestion processor1 processor2 mlservice decision policy-api
-```
+## Advanced configuration
 
-**Start frontend**
-```bash
-docker compose up --build frontend nginx
-```
-
-**Start network producer**
-```bash
-cd Network-Producer
-PORT=8001 docker compose up --build producer-csv 
-
-# if u want to test the system with data from one of your internet interfaces
-
-CAPTURE_INTERFACE="<your_interface>" docker compose up --build producer-tshark
-```
-
-### Acessing dashboard
-
-**Running on local machine**
-
-Access `http://localhost/`.
-
-**Connect your producer**
-
-1. Click on **Add Producer** 
-
-2. Set url `http://producer-csv:8001/subscriptions`.
+- [Train models on kubernetes](docs/train_models_on_kube.md)
 
 ## Contributing
 
