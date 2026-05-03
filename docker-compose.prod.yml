@@ -1,0 +1,27 @@
+# This override removes port mappings for production
+services:
+  kafka:
+    ports: !reset []
+  influxdb:
+    ports: !reset []
+  clickhouse:
+    ports: !reset []
+  data-storage:
+    ports: !reset []
+  mlservice:
+    ports: !reset []
+  mlflow:
+    ports: !reset []
+  policy-api:
+    ports: !reset []
+  permit:
+    ports: !reset []
+  frontend:
+    ports: !reset []
+  # nginx ports are KEPT
+  postgres:
+    ports: !reset []
+  minio:
+    ports: !reset []
+  processor1:
+    ports: !reset []

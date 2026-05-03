@@ -1,31 +1,36 @@
-.PHONY: env help up down build logs clean
+.PHONY: env help dev prod down build logs clean producers
 
 help:
-	@echo "NWDAF Makefile"
+	@echo "PEI-NWDAF Makefile"
 	@echo ""
 	@echo "Usage:"
-	@echo "  make env       Generate .env from .env.vms (required before first run)"
-	@echo "  make up        Start all services"
+	@echo "  make dev       Start in DEV mode (all ports exposed)"
+	@echo "  make prod      Start in PROD mode (only Nginx exposed)"
 	@echo "  make down      Stop all services"
-	@echo "  make build     Rebuild and start services"
-	@echo "  make logs      Follow logs from all services"
-	@echo "  make clean     Stop services and remove volumes"
+	@echo "  make build     Rebuild and start (dev)"
+	@echo "  make logs      Follow logs"
+	@echo "  make clean     Stop and remove volumes"
+	@echo "  make producers Start network producers"
 
 env:
 	@if [ ! -f .env ]; then \
-		echo "Error: .env not found. Copy .env.example to .env and configure HOSTS."; \
-		exit 1; \
+		echo "Copying .env.example to .env..."; \
+		cp .env.example .env; \
 	fi
-	@set -a; . ./.env; set +a; envsubst < .env > .env.tmp && mv .env.tmp .env
-	@echo ".env generated"
 
-up: env network
+producers: env
+	docker compose -f docker-compose.producers.yml up -d
+
+dev: env
 	docker compose up -d
+
+prod: env
+	docker compose -f docker-compose.yml -f docker-compose.prod.yml up -d
 
 down:
 	docker compose down
 
-build: env network
+build: env
 	docker compose up -d --build
 
 logs:
