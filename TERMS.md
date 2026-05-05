@@ -1,6 +1,6 @@
 # Terms and Conditions
 
-**Project:** pei-nwdaf — AI-Driven Network Analytics and Decision Support Platform  
+**Project:** Intelligence in Action - AI-Driven Network Analytics and Decision Support Platform  
 **Organisation:** ATNoG / Universidade de Aveiro  
 **Repository:** https://github.com/ATNoG/pei-nwdaf  
 **Effective date:** 2026-05-03  
