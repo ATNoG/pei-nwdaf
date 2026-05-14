@@ -25,3 +25,7 @@ services:
     ports: !reset []
   processor1:
     ports: !reset []
+
+networks:
+  internal:
+    internal: true
