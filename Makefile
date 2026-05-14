@@ -25,19 +25,19 @@ producers: env
 	docker compose -f docker-compose.producers.yml up -d
 
 dev: env
-	DEV_MODE=true docker compose up -d
+	DEV_MODE=true VITE_DEV_MODE=true docker compose up -d
 
 prod: env
-	DEV_MODE=false docker compose -f docker-compose.yml -f docker-compose.prod.yml up -d
+	DEV_MODE=false VITE_DEV_MODE=false docker compose -f docker-compose.yml -f docker-compose.prod.yml up -d
 
 down:
 	docker compose down
 
 dev-build: env
-	DEV_MODE=true docker compose up -d --build
+	DEV_MODE=true VITE_DEV_MODE=true docker compose up -d --build
 
 prod-build: env
-	DEV_MODE=false docker compose -f docker-compose.yml -f docker-compose.prod.yml up -d --build
+	DEV_MODE=false VITE_DEV_MODE=false docker compose -f docker-compose.yml -f docker-compose.prod.yml up -d --build
 
 logs:
 	docker compose logs -f
