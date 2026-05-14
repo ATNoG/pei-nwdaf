@@ -1,6 +1,10 @@
 # This override removes port mappings for production
 services:
-  kafka:
+  kafka-1:
+    ports: !reset []
+  kafka-2:
+    ports: !reset []
+  kafka-3:
     ports: !reset []
   influxdb:
     ports: !reset []
