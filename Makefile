@@ -25,10 +25,10 @@ producers: env
 	docker compose -f docker-compose.producers.yml up -d
 
 dev: env
-	DEV_MODE=true VITE_DEV_MODE=true docker compose up -d
+	DEV_MODE=true VITE_DEV_MODE=true docker compose up -d --force-recreate
 
 prod: env
-	DEV_MODE=false VITE_DEV_MODE=false docker compose -f docker-compose.yml -f docker-compose.prod.yml up -d
+	DEV_MODE=false VITE_DEV_MODE=false docker compose -f docker-compose.yml -f docker-compose.prod.yml up -d --force-recreate
 
 down:
 	docker compose down
