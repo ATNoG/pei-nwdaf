@@ -10,12 +10,12 @@ services:
     ports: !reset []
   clickhouse:
     ports: !reset []
-  data-storage:
-    ports: !reset []
+  #  data-storage:
+  #    ports: !reset []
   mlservice:
     ports: !reset []
-  mlflow:
-    ports: !reset []
+  #  mlflow:
+  #    ports: !reset []
   policy-api:
     ports: !reset []
   permit:
@@ -23,10 +23,10 @@ services:
   frontend:
     ports: !reset []
   # nginx ports are KEPT
-  postgres:
-    ports: !reset []
-  minio:
-    ports: !reset []
+  #  postgres:
+  #    ports: !reset []
+  #  minio:
+  #    ports: !reset []
   processor1:
     ports: !reset []
 
