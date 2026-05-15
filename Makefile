@@ -28,7 +28,7 @@ dev: env
 	DEV_MODE=true VITE_DEV_MODE=true docker compose up -d --force-recreate
 
 prod: env
-	DEV_MODE=false VITE_DEV_MODE=false docker compose -f docker-compose.yml -f docker-compose.prod.yml up -d --force-recreate
+	DEV_MODE=false VITE_DEV_MODE=false docker compose -f docker-compose.yml -f docker-compose.prod.yml up -d --force-recreate --scale data-storage=3
 
 down:
 	docker compose down
@@ -37,7 +37,7 @@ dev-build: env
 	DEV_MODE=true VITE_DEV_MODE=true docker compose up -d --build
 
 prod-build: env
-	DEV_MODE=false VITE_DEV_MODE=false docker compose -f docker-compose.yml -f docker-compose.prod.yml up -d --build
+	DEV_MODE=false VITE_DEV_MODE=false docker compose -f docker-compose.yml -f docker-compose.prod.yml up -d --build --scale data-storage=3
 
 logs:
 	docker compose logs -f
