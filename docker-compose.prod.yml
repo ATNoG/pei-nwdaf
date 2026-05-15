@@ -30,6 +30,7 @@ services:
   processor1:
     ports: !reset []
 
-networks:
-  internal:
-    internal: true
+# vcnt: this will make k3s not reach postgres and company
+#networks:
+#  internal:
+#    internal: true
