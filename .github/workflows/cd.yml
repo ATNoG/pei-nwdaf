@@ -14,5 +14,8 @@ jobs:
         with:
           submodules: recursive
 
+      - name: Copy .env
+        run: cp /home/ubuntu/.env.pei-nwdaf $GITHUB_WORKSPACE/.env
+
       - name: Deploy
         run: make prod-build
