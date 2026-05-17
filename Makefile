@@ -16,26 +16,35 @@ env:
 	@if [ ! -f .env ]; then \
 		echo "Copying .env.example to .env..."; \
 		cp .env.example .env; \
+		CLUSTER_ID=$$(python3 -c "import uuid,base64;print(base64.urlsafe_b64encode(uuid.uuid4().bytes).decode().rstrip('='))"); \
+		sed -i "s|^KAFKA_CLUSTER_ID=$$|KAFKA_CLUSTER_ID=$$CLUSTER_ID|" .env; \
+		echo "  Generated KAFKA_CLUSTER_ID=$$CLUSTER_ID"; \
 	fi
 
 producers: env
 	docker compose -f docker-compose.producers.yml up -d
 
 dev: env
-	docker compose up -d
+	DEV_MODE=true VITE_DEV_MODE=true docker compose up -d --force-recreate
 
 prod: env
-	docker compose -f docker-compose.yml -f docker-compose.prod.yml up -d
+	DEV_MODE=false VITE_DEV_MODE=false docker compose -f docker-compose.yml -f docker-compose.prod.yml up -d --force-recreate --scale data-storage=2 --scale inference-worker=2 --scale inference-worker=2
 
 down:
 	docker compose down
 
-build: env
-	docker compose up -d --build
+dev-build: env
+	DEV_MODE=true VITE_DEV_MODE=true docker compose up -d --build
+
+prod-build: env
+	DEV_MODE=false VITE_DEV_MODE=false docker compose -f docker-compose.yml -f docker-compose.prod.yml up -d --build --scale data-storage=2 --scale inference-worker=2
 
 logs:
 	docker compose logs -f
 
+
 clean:
+	@echo "WARNING: This removes ALL Docker volumes and persisted data."
+	@read -p "Continue? [y/N] " confirm && [ "$$confirm" = "y" ]
 	docker compose down -v
 	@echo "All services stopped and volumes removed"
