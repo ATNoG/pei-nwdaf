@@ -1,5 +1,10 @@
 # This override removes port mappings for production
 services:
+  nginx:
+    volumes:
+      - /etc/ssl/nwdaf/cert.pem:/etc/nginx/ssl/selfsigned.crt:ro
+      - /etc/ssl/nwdaf/key.pem:/etc/nginx/ssl/selfsigned.key:ro
+
   kafka-1:
     ports: !reset []
   kafka-2:
