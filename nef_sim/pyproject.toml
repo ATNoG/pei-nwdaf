@@ -6,4 +6,5 @@ dependencies = [
     "fastapi>=0.136.0",
     "httpx>=0.28.1",
     "uvicorn>=0.44.0",
+    "scapy>=2.5.0",
 ]

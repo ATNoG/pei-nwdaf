@@ -2,7 +2,7 @@
 
 Get token first (replace IP if needed):
 ```bash
-export AION_TOKEN=$(curl -sk -X POST https://10.255.28.248/auth/realms/aion/protocol/openid-connect/token \
+export AION_TOKEN=$(curl -sk -X POST https://<address>/auth/realms/aion/protocol/openid-connect/token \
   -d "client_id=aion-frontend&grant_type=password&username=<username>&password=<password>" \
   | python3 -c "import sys,json; print(json.load(sys.stdin)['access_token'])")
 ```
