@@ -173,12 +173,23 @@ class FlowAggregator:
                 if now - f["last"] > FLOW_IDLE_SECONDS:
                     stale.append(key)
                     continue
+                # Per-window deltas (bytes since last snapshot), NOT cumulative.
+                # A long-lived flow (e.g. a continuous ping) would otherwise ramp
+                # forever; the model needs the volume *in this window*.
+                ul_d = int(f["ul"] - f.get("rep_ul", 0))
+                dl_d = int(f["dl"] - f.get("rep_dl", 0))
+                rep_ts = f.get("rep_ts", f["start"])
+                f["rep_ul"] = f["ul"]
+                f["rep_dl"] = f["dl"]
+                f["rep_ts"] = f["last"]
+                if ul_d <= 0 and dl_d <= 0:
+                    continue  # no new traffic this window
                 per_src[f["src"]].append({
-                    "startTime": _iso(f["start"]),
+                    "startTime": _iso(rep_ts),
                     "endTime": _iso(f["last"]),
-                    "ul": int(f["ul"]),
-                    "dl": int(f["dl"]),
-                    "dur": int(round(f["last"] - f["start"])),
+                    "ul": ul_d,
+                    "dl": dl_d,
+                    "dur": max(int(round(f["last"] - rep_ts)), 0),
                 })
             for k in stale:
                 del self.flows[k]
