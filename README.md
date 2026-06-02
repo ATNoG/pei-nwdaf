@@ -1,10 +1,21 @@
 # Intelligence in Action: Achieving Trustworthy AI-Driven Networks
 
+<p align="center">
+  <img src="images/icons/aion.svg" alt="AIoN" height="48" style="margin-right:16px;" />
+  <img src="images/icons/atnog.svg" alt="ATNoG" height="48" style="margin-right:16px;" />
+  <img src="images/icons/it.svg" alt="IT" height="48" />
+</p>
+
+
+## Objective
+
+Provide a simple way of ML and network engineers to collaborate on AI-driven network management.
+
 ## Overview
 
 This platform brings AI-driven analytics and automatic decision creation to telecommunications networks.
 
-Network telemetry is continuously ingested, processed, and stored. Machine learning models --- registered and versioned via MLflow --- run inference over that data and publish results to a shared event stream. A policy layer governs data access between all components, ensuring that only authorized services can read or act on sensitive network metrics. An LLM-based decision service consumes model inferences and translates them into actionable network recommendations.
+Network telemetry is continuously ingested, processed, and stored. Machine learning models run inference over that data and publish results to a shared event stream. A policy layer governs data access between all components, ensuring that only authorized services can read or act on sensitive network metrics. An LLM-based decision service consumes model inferences and translates them into actionable network recommendations.
 
 The result is a closed-loop system where raw network data flows through collection, analysis, and decision stages, with policy enforcement and observability at every step.
 
@@ -29,6 +40,11 @@ For a more detailed explanation of the project access our [website](https://atno
 | Rafael Teixeira | 
 
 ## Architecture
+
+### High-level overview
+![high-level](images/architecture_high_level.png)
+
+### Implementation architecture
 ![architecture](images/architecture.png)
 
 ## Quick Start
@@ -37,7 +53,7 @@ For a more detailed explanation of the project access our [website](https://atno
 
 - Docker compose
 - git
-- make
+- make (optional)
 - CPU: 4+ cores
 - RAM: 16 GB recommended
 - Disk: 20+ GB free
@@ -81,9 +97,16 @@ make producers
 
 Go to `http://localhost/`
 
-## Advanced configuration
+## Bookmark
 
-- [Train models on kubernetes](docs/train_models_on_kube.md)
+| Resource | Link |
+|---|---|
+| Demo video | [features.mp4](demos/features.mp4) |
+| Promotional Video | [youtube](https://youtu.be/g02G8SRue9o?si=aK1WvaR0SiDXtD1I) |
+| Kube setup | [train_models_on_kube.md](docs/train_models_on_kube.md) |
+| Microsite | [https://atnog.github.io/pei-nwdaf-microsite](https://atnog.github.io/pei-nwdaf-microsite) |
+
+> **Note:** To fully understand the project, we highly recommend reading the [microsite](https://atnog.github.io/pei-nwdaf-microsite) 🙂.
 
 ## Contributing
 
